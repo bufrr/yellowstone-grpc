@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  dex-router-monitor:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: dex-router-monitor
+    restart: unless-stopped
+    
+    # Environment variables
+    environment:
+      - RUST_LOG=info
+      - ENDPOINT=${ENDPOINT:-http://127.0.0.1:10000}
+      - ROUTER_ADDRESS=${ROUTER_ADDRESS:-}
+    
+    # Volumes for logs
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    
+    # Command override example
+    command: [
+      "--endpoint", "${ENDPOINT:-http://127.0.0.1:10000}",
+      "--router-address", "${ROUTER_ADDRESS:-675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8}",
+      "--log-file", "/app/logs/dex-transactions.log"
+    ]
+    
+    # Network mode for local gRPC server access
+    network_mode: "host"
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "pgrep", "dex-router-monitor"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

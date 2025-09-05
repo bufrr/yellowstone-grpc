@@ -1,0 +1,40 @@
+# Git
+.git/
+.gitignore
+
+# Build artifacts
+target/
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+
+# CI/CD
+.github/
+ci/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node.js (if any)
+node_modules/
+npm-debug.log
+
+# Other
+*.swp
+*.swo
+*~
