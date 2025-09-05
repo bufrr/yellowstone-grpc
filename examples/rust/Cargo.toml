@@ -12,6 +12,9 @@ publish = { workspace = true }
 [[bin]]
 name = "client"
 
+[[bin]]
+name = "dex-router-monitor"
+
 [dependencies]
 anyhow = { workspace = true }
 backoff = { workspace = true, features = ["tokio"] }
@@ -34,6 +37,7 @@ tokio = { workspace = true, features = ["rt-multi-thread", "fs"] }
 tonic = { workspace = true, features = ["zstd", "gzip", "tls-native-roots", "tls-ring"] }
 yellowstone-grpc-client = { workspace = true }
 yellowstone-grpc-proto = { workspace = true, features = ["plugin"] }
+http = { workspace = true }
 
 [lints]
 workspace = true

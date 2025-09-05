@@ -26,3 +26,6 @@ yellowstone-grpc-geyser/config-test.json
 
 # local files for development
 .local
+.mcp.json
+CLAUDE.md
+AGENTS.md
