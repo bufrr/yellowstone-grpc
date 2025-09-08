@@ -138,6 +138,7 @@ It's possible to add limits for filters in the config. If `filters` field is omi
    - [Go](examples/golang)
    - [Rust](examples/rust)
    - [TypeScript](examples/typescript)
+   - 部署指南（中文）：[DEPLOY.zh-CN.md](DEPLOY.zh-CN.md)
 
 **NOTE**: Some load balancers will terminate gRPC connections if there are no messages sent from the client for a period of time.
 In order to mitigate this you need to send a message periodically. The `ping` field in the SubscribeRequest is used for this purpose.

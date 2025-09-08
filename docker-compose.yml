@@ -8,36 +8,22 @@ services:
     container_name: dex-router-monitor
     restart: unless-stopped
     
-    # Environment variables
-    environment:
-      - RUST_LOG=info
-      - ENDPOINT=${ENDPOINT:-http://127.0.0.1:10000}
-      - ROUTER_ADDRESS=${ROUTER_ADDRESS:-}
-    
-    # Volumes for logs
-    volumes:
-      - ./logs:/app/logs
-      - ./config:/app/config:ro
-    
-    # Command override example
+    # Command (values are typically provided via .env)
     command: [
       "--endpoint", "${ENDPOINT:-http://127.0.0.1:10000}",
       "--router-address", "${ROUTER_ADDRESS:-675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8}",
+      "--x-token", "${X_TOKEN:-}",
       "--log-file", "/app/logs/dex-transactions.log"
     ]
+    
+    # Persist logs on host (optional)
+    volumes:
+      - ./logs:/app/logs
     
     # Network mode for local gRPC server access
     network_mode: "host"
     
-    # Resource limits
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 256M
-        reservations:
-          cpus: '0.1'
-          memory: 64M
+    # Resource limits (optional; docker compose ignores 'deploy' on single host)
     
     # Health check
     healthcheck:

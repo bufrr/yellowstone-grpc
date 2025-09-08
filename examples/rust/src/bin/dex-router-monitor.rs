@@ -130,9 +130,16 @@ async fn monitor_dex_router(
 
                                 // Write structured log to file if provided
                                 if let Some(ref log_file) = log_file {
+                                    // Structured CSV format (15 fields):
+                                    // chain,hash,status,serviceName,business,client,chainId,process,processWord,index,innerIndex,currentTime,referId,contractAddress,blockHeight
+                                    // Provided: chain=SOL, hash=signature, chainId=501, process=1031, processWord=node_e2e_grpc_parse, currentTime=local_timestamp_ms; others empty
                                     let log_entry = format!(
-                                        "SOL,{},,,,,,,,,,, {},,,,,,,,,,\n",
-                                        signature, local_timestamp_ms
+                                        "SOL,{hash},,,,{chain_id},{process},{process_word},,{ts},,,\n",
+                                        hash = signature,
+                                        chain_id = 501,
+                                        process = 1031,
+                                        process_word = "node_e2e_grpc_parse",
+                                        ts = local_timestamp_ms
                                     );
 
                                     if let Ok(mut file) = log_file.lock() {
@@ -146,9 +153,12 @@ async fn monitor_dex_router(
 
                                 // Also use trace logging for the structured format
                                 trace!(
-                                    "SOL,{},,,,,,,,,,, {},,,,,,,,,,",
-                                    signature,
-                                    local_timestamp_ms
+                                    "SOL,{hash},,,,{chain_id},{process},{process_word},,{ts},,,",
+                                    hash = signature,
+                                    chain_id = 501,
+                                    process = 1031,
+                                    process_word = "node_e2e_grpc_parse",
+                                    ts = local_timestamp_ms
                                 );
                             }
                         }
