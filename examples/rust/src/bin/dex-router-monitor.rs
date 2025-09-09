@@ -23,6 +23,11 @@ use {
     },
 };
 
+// Constants for chain and process identification
+const CHAIN_ID: u16 = 501;
+const PROCESS: u16 = 10011;
+const PROCESS_WORD: &str = "node_e2e_grpc_parse";
+
 #[derive(Parser, Debug)]
 #[clap(
     author,
@@ -136,9 +141,9 @@ async fn monitor_dex_router(
                                     let log_entry = format!(
                                         "SOL,{hash},,,,{chain_id},{process},{process_word},,{ts},,,\n",
                                         hash = signature,
-                                        chain_id = 501,
-                                        process = 1031,
-                                        process_word = "node_e2e_grpc_parse",
+                                        chain_id = CHAIN_ID,
+                                        process = PROCESS,
+                                        process_word = PROCESS_WORD,
                                         ts = local_timestamp_ms
                                     );
 
@@ -155,9 +160,9 @@ async fn monitor_dex_router(
                                 trace!(
                                     "SOL,{hash},,,,{chain_id},{process},{process_word},,{ts},,,",
                                     hash = signature,
-                                    chain_id = 501,
-                                    process = 1031,
-                                    process_word = "node_e2e_grpc_parse",
+                                    chain_id = CHAIN_ID,
+                                    process = PROCESS,
+                                    process_word = PROCESS_WORD,
                                     ts = local_timestamp_ms
                                 );
                             }
