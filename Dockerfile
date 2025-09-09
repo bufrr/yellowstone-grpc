@@ -14,6 +14,7 @@ WORKDIR /app
 COPY Cargo.toml Cargo.lock ./
 COPY examples/ ./examples/
 COPY yellowstone-grpc-client/ ./yellowstone-grpc-client/
+COPY yellowstone-grpc-geyser/ ./yellowstone-grpc-geyser/
 COPY yellowstone-grpc-proto/ ./yellowstone-grpc-proto/
 
 # Build the specific binary
