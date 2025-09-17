@@ -139,7 +139,7 @@ async fn monitor_dex_router(
                                     // chain,hash,status,serviceName,business,client,chainId,process,processWord,index,innerIndex,currentTime,referId,contractAddress,blockHeight
                                     // Provided: chain=SOL, hash=signature, chainId=501, process=1031, processWord=node_e2e_grpc_parse, currentTime=local_timestamp_ms; others empty
                                     let log_entry = format!(
-                                        "SOL,{hash},,,,{chain_id},{process},{process_word},,{ts},,,\n",
+                                        "SOL,{hash},,,,,{chain_id},{process},{process_word},,,{ts},,,\n",
                                         hash = signature,
                                         chain_id = CHAIN_ID,
                                         process = PROCESS,
@@ -155,16 +155,6 @@ async fn monitor_dex_router(
                                         }
                                     }
                                 }
-
-                                // Also use trace logging for the structured format
-                                trace!(
-                                    "SOL,{hash},,,,{chain_id},{process},{process_word},,{ts},,,",
-                                    hash = signature,
-                                    chain_id = CHAIN_ID,
-                                    process = PROCESS,
-                                    process_word = PROCESS_WORD,
-                                    ts = local_timestamp_ms
-                                );
                             }
                         }
                     }
