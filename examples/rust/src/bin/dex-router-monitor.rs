@@ -25,7 +25,7 @@ use {
 
 // Constants for chain and process identification
 const CHAIN_ID: u16 = 501;
-const PROCESS: u16 = 10011;
+const PROCESS: u16 = 11012;
 const PROCESS_WORD: &str = "node_e2e_grpc_parse";
 
 #[derive(Parser, Debug)]
